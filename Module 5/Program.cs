@@ -4,63 +4,87 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentInfo
+namespace M5Homework
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //variables declaration
-            string FirstName,LastName, AdressLine1, AdressLine2, City, State_Province, Zip_Postal, Country;
-            DateTime BirthDate;
-            int year,month,day;
-
-            // assignements values to variables
-            BirthDate = new DateTime(1965,3,25);
-            FirstName = "Marcin";
-            LastName = "Winner";
-            AdressLine1 = "7";
-            AdressLine2 = "Churchil Street";
-            City = "London";
-            State_Province = "Croydon";
-            Zip_Postal = "Lo65GD";
-            Country = "England";
-
-            // first output the values to the console window
-            Console.WriteLine(FirstName + " " + LastName + " is living at " + AdressLine1 + " " + AdressLine2 + " " + City +" " + Zip_Postal +"\n");
             
+            // instantiate 3 Student objects.
 
-            //Challenge - using of Console.ReadLine();
+            Student s1 = new Student("Thomas", "Walker", "8", "Churchill Street", "London", "Greater London", "E152SA", "England", new DateTime(1973,03,29));
+            Student s2 = new Student("Mark","Walcat","4","Moon Rd","Redditch","Greater London","RT453" , "England",new DateTime(1982,11,03));
+            Student s3 = new Student("Adam","Bolek","5","Wide Rd", "Leeds", "West Yorkshire", "LE356", "England" , new DateTime(2003,01,01));
+            //Student s4 = new Student("Adam", "Bolek", "5", "Wide Rd", "Leeds", "West Yorkshire", "LE356", "England", new DateTime(2003, 01, 01));
+            
+            // instantiate the Course object called Programming with C# 
 
-            //accepting inputs from user
-            Console.Write("Insert your First Name ? ");
-            FirstName = Console.ReadLine();
-            //Console.Write("Your name is : " + s + "\n");
+            Course c1 = new Course("Programming with C#");
+            //Course c2 = new Course("English");
+            //Course c3 = new Course("French");
 
-            Console.Write("Insert your Last Name ? ");
-            LastName = Console.ReadLine();
-            //Console.Write("Your surname is : " + b + "\n");
-            Console.Write("Insert your AdressLine1 ? ");
-            AdressLine1 = Console.ReadLine();
-            Console.Write("Insert your AdressLine2 ? ");
-            AdressLine2 = Console.ReadLine();
-            Console.Write("Insert your City ? ");
-            City = Console.ReadLine();
-            Console.Write("Insert your ZipPostal ? ");
-            Zip_Postal = Console.ReadLine();
-            Console.Write("Insert the year of your birth ? ");
-            year = int.Parse(Console.ReadLine());
-            Console.Write("Insert the month of your birth ? ");
-            month = int.Parse(Console.ReadLine());
-            Console.Write("Insert the day of your birth ? ");
-            day = int.Parse(Console.ReadLine());
-            BirthDate = new DateTime(year,month,day);
-            //Console.Write("your date of birth is :" + BirthDate);
+            // add 3 Students to this Course object.
 
-            //desplaying accepted datas from user.
-            Console.WriteLine(FirstName + " " + LastName + " lives on " + AdressLine1 + " " + AdressLine2 + "\n " + Zip_Postal + " \n and he was born in \n" + BirthDate);
-            Console.ReadLine();
+            c1.addStudents(s1);
+            c1.addStudents(s2);
+            c1.addStudents(s3);
+            //c1.addStudents(s4);
 
+            // Instantiate at least one Teacher object 
+
+            Teacher t1 = new Teacher("John", "Fire", "B2");
+            Teacher t2 = new Teacher("Adam", "Layer", "B3");
+            Teacher t3 = new Teacher("Barbara", "Soja","B1");
+
+            // Add that Teacher object to your Course object
+
+            c1.addTeachers(t1);
+            c1.addTeachers(t2);
+            c1.addTeachers(t3);
+       
+
+            // Instantiate a Degree object, such as Bachelor.
+
+            Degree d1 = new Degree("Bachelor");
+            //Degree d2 = new Degree("HND");
+
+            // Add your Course object to the Degree object.
+
+            d1.addCourse(c1);
+            //d1.addCourse(c2);
+            //d1.addCourse(c3);
+
+           
+            // Instantiate a UProgram object called Information Technology.
+
+            Uprogram Up1 = new Uprogram("Information Technology");
+
+            // Add the Degree object to the UProgram object.
+
+            Up1.addUprogram(d1);
+
+            //Using Console.WriteLine statements, output the following information to the console window:
+
+            //The name of the program and the degree it contains
+
+            Console.WriteLine("The {0} program contains the {1} of science degree", Up1.Title,d1.DegName);
+
+            //The name of the course in the degree
+
+            Console.WriteLine("The {0} of science degree contains the course {1} ", d1.DegName, c1.Coursename);
+
+            //The count of the number of students in the course.
+
+            Console.WriteLine("The {0} course contains {1} student(s)", c1.Coursename, c1.CurrentStudentNumber);
+
+            // The count of the number of teachers in the course     
+
+            //Console.WriteLine("The {0} course contains {1} teacher(s)", c1.Coursename, c1.CurrentTeacherNumber);
+
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
+
     }
 }
