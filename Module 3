@@ -1,0 +1,169 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Functions_Students
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string Simie, Snazwisko, Timie, Tnazwisko,Tklasa,CTitle, CLength, CMGroup;
+            string UpT, UpL, UpP, DN, DSN, DL;
+            string i = "";      
+            DateTime bd;
+            // selection of type of information
+
+            Console.WriteLine("Insert Information for \n 1 - Student\n 2 - Teacher\n 3 - Course\n 4 - Uprogram\n 5 - Degree\n ");
+            i = Console.ReadLine();
+            switch (i)
+            {
+                case "1":
+                    {
+                        // trying to find if date format inserted in wrong format
+                        try
+                        {
+                            GetStudentInformation(out Simie, out Snazwisko, out bd);
+                            printStudentDetails(Simie, Snazwisko, bd);
+                            ValidateStudentBirthday();
+                        }
+                        catch (FormatException)
+                        {
+
+                            Console.WriteLine("sorry, the format inserted is incorrect, try all again");
+                            Console.ReadKey();
+                        }
+                    }
+                    break;
+                case "2":
+                    {
+                        GetTeacherInformation(out Timie, out Tnazwisko, out Tklasa);
+                        printTeacherDetails(Timie, Tnazwisko, Tklasa);
+                    }
+                    break;
+                case "3":
+                    
+                    {
+                        GetCourseInformation(out CTitle, out CLength, out CMGroup);
+                        printCourseDetails(CTitle, CLength, CMGroup); 
+                    }
+                    break;
+                case "4":
+                   
+                    {
+                        getUprogramInformation(out UpT, out UpL, out UpP);
+                        printUprogramDetails(UpT, UpL, UpP); 
+                    }
+                    break;
+                case "5":
+                    
+                    {
+                        getDegreeInformation(out DN, out DSN, out DL);
+                        printDegreeDetails(DN, DSN, DL); 
+                    }
+                    break;
+
+            }
+            Console.ReadKey();        
+
+
+
+        }
+            // Data input methods
+            public static void GetStudentInformation(out string first, out string last, out DateTime bd) {
+
+            Console.WriteLine("tell me your first name ?");
+            first = Console.ReadLine();
+            //Console.WriteLine("Your name is {0}", imie);
+            Console.WriteLine("tell me your last name ?");
+            last = Console.ReadLine();
+            Console.WriteLine("tell me the year of your birthday ?");
+            int year = int.Parse(Console.ReadLine());
+            Console.WriteLine("tell me the month of your birthday ?");
+            int month = int.Parse(Console.ReadLine());
+            Console.WriteLine("tell me the day of your birthday ?");
+            int day = int.Parse(Console.ReadLine());
+            bd = new DateTime(year,month,day);
+            
+            }
+
+        public static void GetTeacherInformation(out string Tname,out string TLname, out string TClassname ) {
+            Console.WriteLine("Enter Teacher's name ? ");
+            Tname = Console.ReadLine();
+            Console.WriteLine("Enter Teacher's last name ? ");
+            TLname = Console.ReadLine();
+            Console.WriteLine("Enter Teacher's class name ? ");
+            TClassname = Console.ReadLine();
+        }
+
+        public static void GetCourseInformation(out string courseTitle,out string courseLength, out string courseMaxGroup)
+        {
+            Console.WriteLine("What is the course title ?");
+            courseTitle = Console.ReadLine();
+            Console.WriteLine("What is the course length ?");
+            courseLength = Console.ReadLine();
+            Console.WriteLine("What is the max group ?");
+            courseMaxGroup = Console.ReadLine();
+
+        }
+        
+        public static void getUprogramInformation(out string UpTitle, out string UpLocation, out string UpProff)
+        {
+            Console.WriteLine("What is the Uprogram's Name ?");
+            UpTitle = Console.ReadLine();
+            Console.WriteLine("What is the Uprogram's Location ?");
+            UpLocation = Console.ReadLine();
+            Console.WriteLine("What is the Uprogram's Proff Name ?");
+            UpProff = Console.ReadLine();
+
+        }
+
+        public static void getDegreeInformation(out string DegName,out string DegSchoolName, out string DegLength)
+        {
+            Console.WriteLine("The name of degree is ?");
+            DegName = Console.ReadLine();
+            Console.WriteLine("Which school achieved ?");
+            DegSchoolName = Console.ReadLine();
+            Console.WriteLine("the length to achieve ?");
+            DegLength = Console.ReadLine();
+        }
+
+        // Not implemented method
+        public static void ValidateStudentBirthday() { throw new NotImplementedException(); }
+
+
+        // Printing methods
+
+        public static void printStudentDetails(string Nome, string Prenome, DateTime Ne)
+        {
+            Console.WriteLine(" Name - {0}\n Surname - {1}\n Birthday time - ", Nome, Prenome, Ne);
+        }
+
+        public static void printTeacherDetails(string Tn, string Ts, string Tcn)
+        {
+            Console.WriteLine(" Teacher's Name - {0}\n Teacher's Surname - {1}\n Teacher's Class - {2}\n", Tn, Ts, Tcn);
+                      
+        }
+
+        public static void printCourseDetails(string Ct, string Cl, string CmG)
+        {
+            Console.WriteLine(" Teacher's Name - {0}\n Teacher's Surname - {1}\n Teacher's Class - {2}\n)", Ct, Cl, CmG);
+
+        }
+
+        public static void printUprogramDetails(string UpT, string UpL, string UpP)
+        {
+            Console.WriteLine(" Teacher's Name - {0}\n Teacher's Surname - {1}\n Teacher's Class - {2}\n)", UpT, UpL, UpP);
+
+        }
+
+        public static void printDegreeDetails(string DN, string DSN, string DL)
+        {
+            Console.WriteLine(" Teacher's Name - {0}\n Teacher's Surname - {1}\n Teacher's Class - {2}\n)", DN, DSN, DL);
+
+        }
+
+    }
+}
